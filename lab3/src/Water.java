@@ -8,13 +8,14 @@ public class Water implements Movable {
 
     public void changePlace(Place p){
         if (place != p) {
-            System.out.println("Из " + place.getPlace() + " брызнули " + force.getTitle() + " струи воды" + p.getPlace());
+            System.out.println("Из " + place.toString() + " брызнули " + force.getTitle() + " струи воды" + p.toString());
             place = p;
         }
     }
 
     public void runFollow(Shorty shorty){
-        //смена действия на Action.Lying
+        shorty.changeAction(Action.LYING);     //на определенное время
+        shorty.getToWater();
     }
 
     @Override

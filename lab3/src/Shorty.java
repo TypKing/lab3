@@ -6,6 +6,8 @@ public class Shorty extends LivingBeing implements Movable, Runnable{
 
     public Shorty(String name, Place place){
         super(name, place);
+        place.countShorties++;
+        place.shorties[place.countShorties] = this;
     }
 
 //    public Shorty(String name, Place place, Action action){
@@ -48,8 +50,8 @@ public class Shorty extends LivingBeing implements Movable, Runnable{
     }
 
     public void changeAction(Action action) {
+        System.out.println("Состояние у " + getName() + "изменилось с " + this.action.getTitle()+ " на " + action.getTitle());
         super.action = action;
-        System.out.println("Состояние изменилось с " + " на ");
     }
 
     protected void see(){
@@ -60,7 +62,6 @@ public class Shorty extends LivingBeing implements Movable, Runnable{
 
     public void getToWater(){
         //изменение значения переменной degreeOfWet в соответсветствии с продолжительностью нахождения по струей воды
-        setAction(Action.LYING);
     }
 
     public void runAround(){

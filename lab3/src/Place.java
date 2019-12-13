@@ -18,12 +18,7 @@ public class Place {
         if (!thing.place.toString().equals(toString())) {
             countThings++;
             thing.setPlace(this);
-            for (int i = 0; i<things.length; i++){
-                if (things[i] == null) {
-                    things[i] = thing;
-                    break;
-                }
-            }
+            things[countThings] = thing;
         }
     }
 
@@ -49,12 +44,7 @@ public class Place {
         if (!shorty.place.toString().equals(toString())) {
             countShorties++;
             shorty.setPlace(this);
-            for (int i = 0; i<shorties.length; i++){
-                if (shorties[i] == null) {
-                    shorties[i] = shorty;
-                    break;
-                }
-            }
+            shorties[countShorties] = shorty;
         }
     }
 

@@ -7,6 +7,7 @@ public class Things {
         this.name = name;
         this.place = place;
         place.countThings++;
+        place.things[place.countThings] = this;
     }
 
     Things(String name, Place place, RoomsParts location){
@@ -14,6 +15,7 @@ public class Things {
         this.place = place;
         this.location = location;
         place.countThings++;
+        place.things[place.countThings] = this;
     }
 
     public String getName(){
