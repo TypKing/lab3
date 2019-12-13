@@ -1,15 +1,31 @@
 public class Things {
-    private String nameOFThing;
+    protected RoomsParts location;
+    protected Place place;
+    protected String name;
 
     Things(String name, Place place){
-        this.nameOFThing = name;
+        this.name = name;
+        this.place = place;
+        place.countThings++;
     }
 
     Things(String name, Place place, RoomsParts location){
-        this.nameOFThing = name;
+        this.name = name;
+        this.place = place;
+        this.location = location;
+        place.countThings++;
     }
 
     public String getName(){
-        return nameOFThing;
+        return name;
+    }
+
+    public void vanish(Hole hole){
+        place = null;
+        System.out.println(getName() + " исчезли в " + hole.getName() + ", которые находятся в " + hole.getRoomPlace());
+    }
+
+    public void setPlace(Place place){
+        this.place = place;
     }
 }

@@ -11,7 +11,7 @@ public enum Color {
         this.title = title;
     }
 
-    private String getTitle() {
+    public String getTitle() {
         return title;
     }
 

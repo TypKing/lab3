@@ -1,11 +1,11 @@
-public class Button {
-    private String name;
-    public boolean singlePress;
+public class Button extends Things{
+    protected boolean singlePress;
     private Color color;
     private RoomsParts location = RoomsParts.WALL;
 
     Button(String name, Place place, Color color) {
-        this.name = name;
+        super(name, place);
+        super.name = name;
         this.color = color;
     }
 
@@ -14,7 +14,7 @@ public class Button {
     }
 
     public String getColor(){
-        return color.toString();
+        return color.getTitle();
     }
 
     public void setSinglePress(boolean b){

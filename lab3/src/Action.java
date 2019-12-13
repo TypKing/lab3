@@ -3,13 +3,14 @@ public enum Action {
     STANDING ("стоит"),
     RUNNING ("бежит"),
     SITTING ("сидит"),
-    LYING("лежит");
-    private String title;
+    LYING("лежит"),
+    KNOCKOFF("cбит с ног");
+    protected String title;
     Action(String title) {
         this.title = title;
     }
 
-    private String getTitle() {
+    protected String getTitle() {
         return title;
     }
 
@@ -17,4 +18,5 @@ public enum Action {
     public String toString() {
         return getTitle();
     }
+
 }

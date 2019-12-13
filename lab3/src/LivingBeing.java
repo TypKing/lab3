@@ -1,9 +1,26 @@
 public abstract class LivingBeing {
-    private Action action;
+    protected Action action = Action.DEFAULT;
     public String name;
     protected Place place;
 
-    LivingBeing(String name) {
+    LivingBeing() {}
+
+    LivingBeing(Place place) {
+        this.place = place;
+    }
+
+    LivingBeing(String name, Place place) {
         this.name = name;
+        this.place = place;
+    }
+
+    LivingBeing(String name, Place place, Action action) {
+        this.name = name;
+        this.place = place;
+        this.action = action;
+    }
+
+    public String getName(){
+        return this.name;
     }
 }
