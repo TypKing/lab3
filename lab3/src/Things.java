@@ -23,8 +23,10 @@ public class Things {
     }
 
     public void vanish(Hole hole){
-        place = null;
-        System.out.println(getName() + " исчезли в " + hole.getName() + ", которые находятся в " + hole.getRoomPlace());
+        if (hole.close_open) {
+            place = null;
+            System.out.println(getName() + " исчезли в " + hole.getName() + ", которые находятся в " + hole.getRoomPlace());
+        }
     }
 
     public void setPlace(Place place){
