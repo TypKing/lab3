@@ -55,10 +55,10 @@ public class Shorty extends LivingBeing implements Movable, Runnable{
         super.action = action;
     }
 
-    protected void see(Things[] things){
+    protected void see(Things[] things, Hole hole){
         int count = 0;
         if ((things[1].place == null) && (things[2] != null)) {
-            System.out.println(getName() + " увидел, что полки начали опускаться");
+            System.out.println(getName() + " увидел, что полки начали опускаться в " + hole.getName());
         } else {
             for (Things thing : things) {
                 if (thing.place == null) {
@@ -66,7 +66,8 @@ public class Shorty extends LivingBeing implements Movable, Runnable{
                 }
             }
             if (count == things.length) {
-                System.out.println(getName() + " увидел, что все полки исчезли");
+                hole.close_open = false;
+                System.out.println(getName() + " увидел, что все полки исчезли в " + hole.getName());
             }
         }
     }
