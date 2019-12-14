@@ -1,4 +1,5 @@
 public class Hole extends Things{
+    int close_open = 0;
 
     Hole(String name, Place place, RoomsParts location){
         super(name, place, location);

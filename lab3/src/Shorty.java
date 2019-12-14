@@ -24,17 +24,18 @@ public class Shorty extends LivingBeing implements Movable, Runnable{
             if (shorty.action == Action.STANDING) {
                 count++;
             }
-            if (count == shorties.length) {
-                System.out.println("Я убедился, что все коротышки слезли с полок");
-            } else {
-                System.out.println("Не все коротышки слезли с полок");
-            }
+        }
+        if (count == shorties.length) {
+            System.out.println("Я убедился, что все коротышки слезли с полок");
+        } else {
+            System.out.println("Не все коротышки слезли с полок");
         }
     }
 
-    public void getDown(Things object) {
+    public void getDown(Things object) throws InterruptedException {
         System.out.println(getName() + " слез с " + object.getName());
         setAction(Action.STANDING);
+        Thread.sleep(500);
     }
 
     public void pressButton(Button button) {
@@ -54,18 +55,33 @@ public class Shorty extends LivingBeing implements Movable, Runnable{
         super.action = action;
     }
 
-    protected void see(){
+    protected void see(Things[] things){
+        int count = 0;
+        if ((things[1].place == null) && (things[2] != null)) {
+            System.out.println(getName() + " увидел, что полки начали опускаться");
+        } else {
+            for (Things thing : things) {
+                if (thing.place == null) {
+                    count++;
+                }
+            }
+            if (count == things.length) {
+                System.out.println(getName() + " увидел, что все полки исчезли");
+            }
+        }
     }
 
-    public void runAwayFrom(int x, int y){
+    public void runAway(int x, int y){
+        //передвижение на вектор
     }
 
-    public void getToWater(){
+    public void getToWater(int value){
         //изменение значения переменной degreeOfWet в соответсветствии с продолжительностью нахождения по струей воды
     }
 
-    public void runAround(){
+    public void runAround() throws InterruptedException {
         //передвижение на рандомный вектор
+        Thread.sleep(500);
     }
 
     public void changePlace(Place p){
@@ -78,7 +94,8 @@ public class Shorty extends LivingBeing implements Movable, Runnable{
     public void comeAcross(Shorty shorty){
     }
 
-    public void escape(Place p){
+    public void escape(){
+        changePlace(null);
     }
 
 }

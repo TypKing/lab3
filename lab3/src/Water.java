@@ -13,9 +13,10 @@ public class Water implements Movable {
         }
     }
 
-    public void runFollow(Shorty shorty){
-        shorty.changeAction(Action.LYING);     //на определенное время
-        shorty.getToWater();
+    public void runFollow(Shorty shorty, int value){
+        shorty.changeAction(Action.LYING);
+        shorty.getToWater(value);
+        shorty.changeAction(Action.STANDING);
     }
 
     @Override

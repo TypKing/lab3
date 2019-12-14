@@ -1,4 +1,4 @@
 public interface Runnable {
-    void runAwayFrom(int x, int y);
-    void runAround();
+    void runAway(int x, int y);
+    void runAround() throws InterruptedException;
 }

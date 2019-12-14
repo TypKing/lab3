@@ -1,8 +1,11 @@
-import java.nio.charset.StandardCharsets;
+import java.util.Timer;
 
 public class Story {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
+        Timer timer = new Timer();
+        Time time = new Time();
+        timer.schedule(time, 0, 1000);
         Place room = new Place("Помещение");
         Place corridor = new Place("Коридор");
         Shorty dontknow = new Shorty("Neznaika", corridor);
@@ -18,8 +21,10 @@ public class Story {
         Button button1 = new Button("button 1", corridor, Color.BLUE);
         dontknow.pressButton(button1);
         Hole squareHole = new Hole("Четырехугольные отверстия", room, RoomsParts.FLOOR);
-        Time.increaseTime();
+//        Time.increaseTime();
         PrisonBoss prisonBoss = new PrisonBoss();
         prisonBoss.checkMoney();
+        System.out.println(Time.getMinutes());
+        System.exit(0);
     }
 }

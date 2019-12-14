@@ -16,15 +16,21 @@ public class PrisonBoss extends LivingBeing {
      }
 
      public Double checkMoney(){
-         System.out.print("На счету тюремного начальства: " + money);
+         System.out.println("На счету тюремного начальства: " + money);
          return money;
      }
 
      public void setWish(boolean b){
         wish = b;
-         System.out.println();
+         System.out.print("Мнение начальства по этому вопросу стало ");
+         if (wish) {
+             System.out.println("положительным");
+         } else {
+             System.out.println("отрицательным");
+         }
      }
 
      public void send(Shorty shorty, Place place){
+        shorty.changePlace(place);
      }
 }
