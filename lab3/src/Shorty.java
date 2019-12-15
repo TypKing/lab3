@@ -12,7 +12,7 @@ public class Shorty extends LivingBeing implements Movable, Runnable{
     public Shorty(String name, Place place){
         super(name, place);
         place.countShorties++;
-        place.shorties[place.countShorties-1] = this;
+//        place.shorties[place.countShorties-1] = this;
         Random random = new Random();
          do {
             x = random.nextInt(10);
@@ -25,22 +25,23 @@ public class Shorty extends LivingBeing implements Movable, Runnable{
     public Shorty(String name, Place place, int x, int y){
         super(name, place);
         place.countShorties++;
-        place.shorties[place.countShorties] = this;
+//        place.shorties[place.countShorties] = this;
         this.x = x;
         this.y = y;
         place.field[x][y] = this;
-    }
-
-    public void setPlace(Place place){
-        super.place = place;
     }
 
     public Place getPlace(){
         return place;
     }
 
-    public void changePlace(Place p){
-        super.place = p;
+    public void changePlace(Place place){
+        super.place = place;
+    }
+
+    public void setCoordinate(int x, int y){
+        this.x = x;
+        this.y = y;
     }
 
     public void setAction(Action action) {
