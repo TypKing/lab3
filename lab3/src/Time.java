@@ -25,4 +25,14 @@ public class Time extends TimerTask {
             e.printStackTrace();
         }
     }
+
+    @Override
+    public String toString() {
+        return getMinutes();
+    }
+
+    @Override
+    public int hashCode() {
+        return minute;
+    }
 }

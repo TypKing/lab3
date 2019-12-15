@@ -17,4 +17,15 @@ public abstract class LivingBeing {
     public String getName(){
         return this.name;
     }
+
+    @Override
+    public String toString() {
+        return name;
+    }
+
+
+    @Override
+    public boolean equals(Object obj) {
+        return name == obj.toString();
+    }
 }

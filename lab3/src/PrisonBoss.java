@@ -1,3 +1,5 @@
+import javafx.scene.effect.Blend;
+
 public class PrisonBoss extends LivingBeing {
     static boolean wish;
     static double money = 16000000;
@@ -36,4 +38,9 @@ public class PrisonBoss extends LivingBeing {
      public static void send(Shorty shorty, Place place){
         shorty.changePlace(place);
      }
+
+    @Override
+    public int hashCode() {
+        return (int)(money/name.length());
+    }
 }

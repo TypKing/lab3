@@ -23,11 +23,6 @@ public class Place {
         return field[x][y];
     }
 
-    @Override
-    public String toString() {
-        return name;
-    }
-
     public void addThings(Things thing){
 //        if ((!equals(thing.getPlace())) && (countThings<20)) {
             countThings++;
@@ -107,5 +102,15 @@ public class Place {
     @Override
     public boolean equals(Object obj) {
         return toString() == obj.toString();
+    }
+
+    @Override
+    public int hashCode() {
+        return name.length() + countThings*countShorties;
+    }
+
+    @Override
+    public String toString() {
+        return name;
     }
 }

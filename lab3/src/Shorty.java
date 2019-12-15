@@ -72,10 +72,11 @@ public class Shorty extends LivingBeing implements Movable, Runnable{
         Thread.sleep(440);
     }
 
-    public void pressButton(Button button) throws InterruptedException {
+    public void pressButton(Button button, Hole hole) throws InterruptedException {
         if (!button.singlePress) {
             System.out.println(name + " нажал на " + button.getColor()+ " " + button.getName());
             button.setSinglePress(true);
+            hole.open();
             Thread.sleep(1000);
         }
         else System.out.println(button.getName() + " уже была нажата");
@@ -214,18 +215,8 @@ public class Shorty extends LivingBeing implements Movable, Runnable{
     }
 
     @Override
-    public String toString() {
-        return name;
-    }
-
-    @Override
     public int hashCode() {
         return degreeOfDirt*degreeOfWet;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        return name == obj.toString();
     }
 
     public void escape(){

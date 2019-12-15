@@ -30,8 +30,7 @@ public class Story {
             shorty[i].getDown(shelf[i]);
         }
         dontknow.makeSure(shorty);
-        dontknow.pressButton(button1);
-        squareHole.open();
+        dontknow.pressButton(button1, squareHole);
         shelf[0].vanish(squareHole);
         dontknow.see(shelf, squareHole);
         room.returnThingsName();
@@ -42,8 +41,7 @@ public class Story {
         room.returnShortiesName();
         drigle.see(shelf, squareHole);
         drigle.lock(door);
-        drigle.pressButton(button2);
-        circleHole.open();
+        drigle.pressButton(button2, circleHole);
         stream.setLocation(circleHole);
         stream.setForce(Force.STRONG);
         stream.changePlace(room);
