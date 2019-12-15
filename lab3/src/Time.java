@@ -1,23 +1,26 @@
 import java.util.TimerTask;
 
 public class Time extends TimerTask {
-    protected static int minute = 0;
+    private static int minute = 0;
 
-    public static void increaseTime() {
-        minute++;
-        System.out.println("Прошла минута");
+    public static void increaseTime(int second) {
+        minute += second;
     }
 
     public static String getMinutes(){
-        return "Прошло " + minute + " минут";
+        return "Прошло " + minute/2 + " минут";
     }
 
     @Override
     public void run() {
         minute++;
-        System.out.println("Прошла минута");
+        if (minute%2 == 0){
+            System.out.println();
+            System.out.println("Прошла минута");
+            System.out.println();
+        }
         try {
-            Thread.sleep(1000);
+            Thread.sleep(500);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }

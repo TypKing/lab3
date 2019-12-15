@@ -1,6 +1,5 @@
 public abstract class LivingBeing {
-    protected Action action = Action.DEFAULT;
-    public String name;
+    protected String name;
     protected Place place;
 
     LivingBeing() {}
@@ -14,11 +13,6 @@ public abstract class LivingBeing {
         this.place = place;
     }
 
-    LivingBeing(String name, Place place, Action action) {
-        this.name = name;
-        this.place = place;
-        this.action = action;
-    }
 
     public String getName(){
         return this.name;

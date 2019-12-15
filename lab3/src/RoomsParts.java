@@ -1,7 +1,7 @@
 public enum RoomsParts {
-    WALL("Стена"),
-    FLOOR("Пол"),
-    CEILING("Потолок");
+    WALL("стене"),
+    FLOOR("полу"),
+    CEILING("потолоке");
 
     private String title;
     RoomsParts(String title) {

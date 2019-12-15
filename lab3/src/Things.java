@@ -1,35 +1,61 @@
 public class Things {
     protected RoomsParts location;
-    protected Place place;
+    private Place place;
     protected String name;
+    protected boolean close_open = false;
 
     Things(String name, Place place){
         this.name = name;
         this.place = place;
-        place.countThings++;
-        place.things[place.countThings] = this;
+        place.addThings(this);
     }
 
     Things(String name, Place place, RoomsParts location){
         this.name = name;
         this.place = place;
         this.location = location;
-        place.countThings++;
-        place.things[place.countThings] = this;
+    }
+
+    public void setClose_open(boolean bool){
+        close_open = bool;
     }
 
     public String getName(){
         return name;
     }
 
-    public void vanish(Hole hole){
+    public Place getPlace(){
+        return place;
+    }
+
+    public void setPlace(Place place) {
+        this.place = place;
+    }
+
+    public String getRoomPlace(){
+        return location.getTitle();
+    }
+
+    public void vanish(Hole hole) throws InterruptedException {
         if (hole.close_open) {
-            place = null;
-            System.out.println(getName() + " исчезли в " + hole.getName() + ", которые находятся в " + hole.getRoomPlace());
+            System.out.println(getName() + " исчезлa в " + hole.getName() + ", которые находятся в " + hole.getRoomPlace());
+            place.removeThings(this);
+            Thread.sleep(90);
         }
     }
 
-    public void setPlace(Place place){
-        this.place = place;
+    @Override
+    public String toString() {
+        return name;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        return name == obj.toString();
+    }
+
+    @Override
+    public int hashCode() {
+        return name.length()*2;
     }
 }

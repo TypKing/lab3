@@ -9,15 +9,20 @@ public class Button extends Things{
         this.color = color;
     }
 
-    public String getName() {
-        return name;
-    }
-
     public String getColor(){
         return color.getTitle();
     }
 
     public void setSinglePress(boolean b){
         this.singlePress = b;
+    }
+
+    public boolean getSinglePress(){
+        return singlePress;
+    }
+
+    @Override
+    public int hashCode() {
+        return name.length()*getColor().length();
     }
 }
