@@ -1,12 +1,11 @@
 public class Things {
     protected RoomsParts location;
-    private Place place;
+    private Place place = new Place("Someting");
     protected String name;
     protected boolean close_open = false;
 
     Things(String name, Place place){
         this.name = name;
-        this.place = place;
         place.addThings(this);
     }
 

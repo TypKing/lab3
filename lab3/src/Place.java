@@ -24,11 +24,11 @@ public class Place {
     }
 
     public void addThings(Things thing){
-//        if ((!equals(thing.getPlace())) && (countThings<20)) {
+        if ((!equals(thing.getPlace())) && (countThings<20)) {
             countThings++;
             thing.setPlace(this);
             things[countThings-1] = thing;
-//        }
+        }
     }
 
     public void removeThings(Things thing){
