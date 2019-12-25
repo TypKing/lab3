@@ -1,9 +1,10 @@
+import java.util.Random;
+
 public class Place {
     protected int countThings = 0;
     protected int countShorties = 0;
     protected String name;
     protected Things[] things = new Things[20];
-    protected Shorty[] shorties = new Shorty[10];
     protected Shorty[][] field = new Shorty[10][10];
 
     Place(String name) {
@@ -53,22 +54,39 @@ public class Place {
     }
 
     public void addShorty(Shorty shorty){
+        int x;
+        int y;
         if ((!equals(shorty.getPlace())) && (countShorties<20)) {
             countShorties++;
-            shorty.setPlace(this);
-            shorties[countShorties] = shorty;
+            shorty.changePlace(this);
+//            shorties[countShorties] = shorty;
+            Random random = new Random();
+            do {
+                x = random.nextInt(10);
+                y = random.nextInt(10);
+            }
+            while (field[x][y] != null);
+            field[x][y] = shorty;
+            shorty.setCoordinate(x, y);
         }
     }
 
     public void removeShorty(Shorty shorty){
         if (equals(shorty.getPlace())) {
             shorty.place = null;
-            for (int i = 0; i<shorties.length; i++){
-                if (shorties[i] == shorty) {
-                    for (int j = i; j<shorties.length; j++){
-                        shorties[j] = shorties[j+1];
+//            for (int i = 0; i<shorties.length; i++){
+//                if (shorties[i] == shorty) {
+//                    for (int j = i; j<shorties.length; j++){
+//                        shorties[j] = shorties[j+1];
+//                    }
+//                    shorties[shorties.length-1] = null;
+//                }
+//            }
+            for (int i=0; i<field.length; i++){
+                for (int j=0; j<field.length; j++){
+                    if (field[i][j].equals(shorty)){
+                        field[i][j] = null;
                     }
-                    shorties[shorties.length-1] = null;
                 }
             }
             if (countShorties == 0) {
@@ -91,9 +109,16 @@ public class Place {
 
     public void returnShortiesName(){
         System.out.println("В " + toString() + " находятся следующие коротышки: ");
-        for (Shorty shorty : shorties) {
-            if (shorty != null){
-                System.out.print(shorty.getName() + "  ");
+//        for (Shorty shorty : shorties) {
+//            if (shorty != null){
+//                System.out.print(shorty.getName() + "  ");
+//            }
+//        }
+        for (int i=0; i<field.length; i++){
+            for (int j=0; j<field.length; j++){
+                if (field[i][j] != null){
+                System.out.print(field[i][j].getName() + "  ");
+                }
             }
         }
         System.out.println();

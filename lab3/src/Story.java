@@ -8,25 +8,26 @@ public class Story {
         Time time = new Time();
         Water stream = new Water();
 
-        Place room = new Place("Room");
-        Place corridor = new Place("Corridor");
+        Place room = new Place("room");
+        Place corridor = new Place("corridor");
 
-        Shorty dontknow = new Shorty("Neznaika", corridor);
+        Shorty dontknow = new Shorty("Neznaika", room);
         Shorty drigle = new Shorty("Drigle", corridor);
+        Shorty miga = new Shorty("Miga", corridor);
         Shorty[] shorty = new Shorty[10];
 
         Things[] shelf = new Things[10];
-        Things door = new Things("Door", corridor, RoomsParts.WALL);
+        Things door = new Things("door", corridor, RoomsParts.WALL);
         door.setClose_open(true);
-        Button button1 = new Button("button 1", corridor, Color.BLUE);
-        Button button2 = new Button("button 2", corridor, Color.ORANGE);
+        Button button1 = new Button("button #1", corridor, Color.BLUE);
+        Button button2 = new Button("button #2", corridor, Color.ORANGE);
         Hole squareHole = new Hole("Square Holes", room, RoomsParts.FLOOR);
         Hole circleHole = new Hole("Circle Holes", room, RoomsParts.WALL);
 
         timer.schedule(time, 0, 500);
         for (int i = 0; i<10; i++) {
-            shorty[i] = new Shorty("Korotishka " + (i + 1), room);
-            shelf[i] = new Things("Polka " + (i + 1), room);
+            shorty[i] = new Shorty("Shorty #" + (i + 1), room);
+            shelf[i] = new Things("Shelf #" + (i + 1), room);
             shorty[i].getDown(shelf[i]);
         }
         dontknow.makeSure(shorty);
@@ -52,8 +53,8 @@ public class Story {
             stream.runFollow(shorty[j], 100*(random.nextInt(2)+4));
         }
         PrisonBoss.setWish(false);
-        PrisonBoss.rename(room, "Moiku");
-        PrisonBoss.wasteMoney(3000000, "postroika specialnoy umivalni");
+        PrisonBoss.rename(room, "bathroom");
+        PrisonBoss.wasteMoney(3000000, "building a special washroom");
 //        Time.increaseTime();
 //        PrisonBoss.checkMoney();
         System.out.println(Time.getMinutes());

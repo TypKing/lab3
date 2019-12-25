@@ -1,4 +1,3 @@
-import java.nio.charset.Charset;
 import java.util.Random;
 import static java.lang.Math.*;
 
@@ -12,7 +11,7 @@ public class Shorty extends LivingBeing implements Movable, Runnable{
     public Shorty(String name, Place place){
         super(name, place);
         place.countShorties++;
-        place.shorties[place.countShorties-1] = this;
+//        place.shorties[place.countShorties-1] = this;
         Random random = new Random();
          do {
             x = random.nextInt(10);
@@ -25,22 +24,24 @@ public class Shorty extends LivingBeing implements Movable, Runnable{
     public Shorty(String name, Place place, int x, int y){
         super(name, place);
         place.countShorties++;
-        place.shorties[place.countShorties] = this;
+//        place.shorties[place.countShorties] = this;
         this.x = x;
         this.y = y;
         place.field[x][y] = this;
-    }
-
-    public void setPlace(Place place){
-        super.place = place;
     }
 
     public Place getPlace(){
         return place;
     }
 
-    public void changePlace(Place p){
-        super.place = p;
+    public void changePlace(Place place){
+        super.place = place;
+        System.out.println(getName() + " переместился в " + place.toString());
+    }
+
+    public void setCoordinate(int x, int y){
+        this.x = x;
+        this.y = y;
     }
 
     public void setAction(Action action) {
@@ -82,7 +83,7 @@ public class Shorty extends LivingBeing implements Movable, Runnable{
         else System.out.println(button.getName() + " уже была нажата");
     }
 
-    protected void see(Things[] things, Hole hole){
+    public void see(Things[] things, Hole hole){
         int count = 0;
         if ((things[0].getPlace() == null) && (things[1].getPlace() != null)) {
                 System.out.println(getName() + " увидел, что полки начали опускаться в " + hole.getName());
@@ -113,7 +114,7 @@ public class Shorty extends LivingBeing implements Movable, Runnable{
                 //должен высыхать в соответствии с тем, сколько он прошел
                 degreeOfWet -= sqrt(x*x + y*y)*random.nextInt(10)/0.001;
                 if (degreeOfWet < 0){
-                    degreeOfWet = 100;
+                    degreeOfWet = 0;
                 }
                 System.out.println(getName() + " немного высох в движении. Степень промокания: " + degreeOfWet);
             } else {
@@ -151,8 +152,10 @@ public class Shorty extends LivingBeing implements Movable, Runnable{
             }
             System.out.println(getName() + " немного высох в движении. Степень промокания: " + degreeOfWet);
         } else {
-            System.out.println(getName() + " попытался переместиться на координаты " + (this.x + z) + " " + (this.y + w) + ", но место уже занято");
-            comeAcross(place.getObject(this.x + z, this.y + w));
+            if ((w != 0) && (z != 0)) {
+                System.out.println(getName() + " попытался переместиться на координаты " + (this.x + z) + " " + (this.y + w) + ", но место уже занято");
+                comeAcross(place.getObject(this.x + z, this.y + w));
+            }
 //                break first;
         }
 //        }
@@ -210,13 +213,17 @@ public class Shorty extends LivingBeing implements Movable, Runnable{
             }
             System.out.println(getName() + " и " + shorty.getName() + " немного отчистились: " + getName() + " -> " + degreeOfDirt + ", " + shorty.getName() + " -> " + shorty.degreeOfDirt);
         } else {
-            System.out.println(getName() + " уже здесь");
+//            System.out.println(getName() + " уже здесь");
         }
     }
 
     @Override
     public int hashCode() {
         return degreeOfDirt*degreeOfWet;
+    }
+
+    public boolean equals(Shorty shorty) {
+        return ((name == shorty.getName())&&(hashCode() == shorty.hashCode()));
     }
 
     public void escape(){
